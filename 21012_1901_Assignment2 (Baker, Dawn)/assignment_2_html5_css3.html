@@ -1,0 +1,367 @@
+<!doctype html>
+ 
+<html lang="en">
+  <head>
+    <title>Assignment 2 Advanced HTML5/CSS3</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/js" href="old_ie.js"/>
+    <style>
+      body{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        background: linear-gradient(#ffe, #ffb);
+        margin: 0;
+      }
+      #wrapper{
+        max-width: 960px;
+        background-color: #fff;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+      #hero{
+        position: relative;
+        font-size: 4em;
+        text-shadow: 2px 2px 2px #000;
+        color: #fff;
+        background-image: url(images/cartoon_bee_hero.jpg);
+        height: 300px;
+        text-align: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      /* styling the cube */
+      #cube_wrap{
+        margin-top: 70px;
+        margin-bottom: 80px;
+        margin-left: 70px;
+        float: left;
+        -webkit-perspective: 900px;
+        perspective: 900px;
+        -webkit-perspective-origin: 50% 50%;
+        perspective-origin: 50% 50%;
+      }
+      .cube{
+        margin: auto;
+        position: absolute;
+        height: 150px;
+        width: 150px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+      }
+      .cube > div{
+        position: absolute;
+        box-sizing: border-box;
+        padding: 0px;
+        height: 100%;
+        width: 100%;
+        background-color: #000;
+        border: 1px solid #fff;
+        color: #fff;
+      }
+      /* animating the cube */
+      .front{
+        background-image: url(images/blueflower.jpg);
+        -webkit-transform: translateZ(50px);
+        transform: translateZ(50px);
+      }
+      .back{
+        background-image: url(images/purpleflower.jpg);
+        -webkit-transform: translateZ(-100px) rotateY(180deg);
+        transform: translateZ(-100px) rotateY(180deg);
+      }
+      .right{
+        background-image: url(images/redrose.jpg);
+        -webkit-transform: rotateY(-270deg) translateX(100px);
+        transform: rotateY(-270deg) translateX(100px);
+        -webkit-transform-origin: top right;
+        transform-origin: top right;
+      }
+      .left{
+        background-image: url(images/whiteflower.jpg);
+        -webkit-transform: rotateY(270deg) translateX(-100px);
+        transform: rotateY(270deg) translateX(-100px);
+        -webkit-transform-origin: center left;
+        transform-origin: center left;
+      }
+      .top {
+        background-image: url(images/yellowflower.jpg);
+        -webkit-transform: rotateX(-270deg) translateY(-100px);
+        transform: rotateX(-270deg) translateY(-100px);
+        -webkit-transform-origin: top center;
+        transform-origin: top center;
+      }
+      .bottom {
+        background-image: url(images/redflower.jpg);
+        -webkit-transform: rotateX(270deg) translateY(100px);
+        transform: rotateX(270deg) translateY(100px);
+        -webkit-transform-origin: bottom center;
+        transform-origin: bottom center;
+      }
+      @keyframes rotate{
+        from{
+          -webkit-transform: rotateX(0deg) rotateY(0deg);
+          transform: rotateX(0deg) rotateY(0deg);
+        }
+        to{
+          -webkit-transform: rotateX(360deg) rotateY(360deg);
+          transform: rotateX(360deg) rotateY(360deg);
+        }
+      }
+      .cube{
+        -webkit-animation: rotate 10s linear infinite;
+        animation: rotate 10s linear infinite;
+      }
+      /* styles for nav bar */
+      nav{
+        position: relative;
+        float: left;
+        width: 110px;
+      }
+      nav ul{
+        margin: 0;
+        padding: 0;   
+      }
+      nav ul li{
+        list-style-type: none;
+        padding-top: 3px;
+        width: 100px;
+        border-radius: 5px;
+        margin: 5px;
+      }
+      nav ul li a{
+        font-size: 1.1em;
+        padding: 14px 7px 13px 10px;
+        display: block;
+        text-decoration: none;
+        background-color: #fc0;
+        color: #000;
+        font-weight: bold;
+        box-shadow: 0 8px 10px rgba(0,0,0,.6);
+        border-radius: 5px;
+        -webkit-transition-duration: 0.1s;
+        transition-duration: 0.1s;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+      }
+      nav ul li a:hover{
+        -webkit-transform-origin: bottom center;
+        transform-origin: bottom center;
+        -webkit-transform: rotateX(20deg);
+        transform: rotateX(20deg);
+      }
+      /* main body */
+      
+      section{
+        margin-left: 120px;
+        padding: 3px 10px;
+      }
+      h1{
+        width: 185px;
+        margin-top: 10px;
+        padding: 10px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.6);
+        border-radius: 5px;
+        background-color: #fc0;
+      }
+      video{
+        margin-top: 10px;
+        position: relative;
+      }
+      #first_paragraph{
+        margin-top: 3em;
+        margin-bottom: 1em;
+        float: left;
+        clear: both;
+      }
+      h2{
+        font-size: 0.9em;
+        margin: 3px 0 5px 0;
+      }
+      form{
+        margin-top: 2.5em;
+      }
+      form fieldset{
+        width: 400px;
+        border: 1px solid #000;
+        margin-bottom: 20px;
+        font-size: 0.9em;
+      }
+      form legend{
+        background-color: #fc0;
+        color: #000;
+        font-weight: bold;
+        padding: 6px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        font-weight: bold;
+        box-shadow: 0 1px 1px rgba(0,0,0,.6);
+      }
+      form label{
+        clear: both;
+        width: 130px;
+        display: block;
+        float: left;
+      }
+      form input[type="text"],
+      form input[type="email"],
+      form input[type="password"],
+      form input[type="tel"],
+      form input[type="date"],
+      form input[type="url"]{
+        border: 1px solid #000;
+        width: 200px;
+        background-color: #fff;
+        font-size: 1.1em;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+        box-shadow: inset 1px 1px 2px rgba(0,0,0,.5);
+      }
+      form input:hover{
+        background-color: #ffb;
+        box-shadow: 0 0 6px #ccc;
+      }
+      form input + label{
+        float: none;
+        display: inline;
+        width: auto;
+      }
+      datalist{
+        float: left;
+        display: none;
+      }
+      footer{
+        height: 100px;
+        background-color: #ffb;
+        color: #000;
+      }
+      footer{
+        text-align: center;
+        padding-top: 10px;
+      } 
+      
+    </style>
+    <!--[if LT IE 9]>
+      <script src="old_ie.js"></script>
+      <style type="text/css">
+        header,
+        nav,
+        section,
+        footer{
+          display:block;
+        }
+        
+      </style>
+    <![endif]-->
+  </head> 
+  
+  <body> 
+   <!--[if LTE IE 9]>
+     <div id="ie_warning"> You are using an older version of IE, 
+     you may not be able to view this page correctly!</div>
+    <![endif]-->
+    <div id="wrapper">
+      <header> 
+        <div id="hero">Bees in Flowers
+          <div id="cube_wrap">
+            <div class="cube">
+              <div class="front"></div>
+              <div class="back"></div>
+              <div class="top"></div>
+              <div class="bottom"></div>
+              <div class="left"></div>
+              <div class="right"></div>
+            </div>
+          </div>
+        </div>
+        
+      </header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Bees</a></li>
+          <li><a href="#">Flowers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <section>
+        <h1>Bees in Flowers</h1>
+        
+        <video controls width="400" poster="poster.jpg">
+          <source src="flying_bee.mp4" type="video/mp4" />
+          <source src="flying_bee.webm" type="video/webm" />
+          Sorry, your browser does not support HTML5 video.
+        </video>
+      </section>
+      <section>
+        <h3>Want to see more bees in flowers?</h3>
+        <p>Fill in the form below</p>
+        <form id="form"
+            name="form"
+            method="post"
+            action="http://www.scott-media.com/test/form_display.php"
+            autocomplete="on"
+            >  
+        <fieldset> 
+          <legend>Personal Info</legend>  
+          <p>
+            <label for="first_name">First Name:</label>   
+            <input type="text" 
+                   id="first_name"
+                   name="first_name"
+                   required placeholder="Type name here"
+                   />
+          </p>
+          <p>
+            <label for="last_name">Last Name:</label>
+            <input type="text"
+                   id="last_name"
+                   name="last_name"
+                   />
+          </p>
+          <p>
+            <label for="email_address">Email: </label>
+            <input type="email"
+                   name="email_address"
+                   id="email_address"
+                   required placeholder="enter your email"
+                   />
+          </p>
+          <p>
+            <label for="phone">Phone Number</label>
+            <input type="tel" name="phone" id="phone" />
+          </p>
+          <p>
+            <label for="birthday">Date of Birth (yyyy-mm-dd)</label>
+            <input type="date" name="birthday" id="birthday" />
+          </p>
+          <p>
+            <label>Your Province
+              <input list="province" name="province" />
+            </label>
+            <datalist id="province">
+              <option value="Manitoba">Manitoba</option>
+              <option value="Saskatchewan">Saskatchewan</option>
+              <option value="Ontario">Ontario</option>
+              <option value="Alberta">Alberta</option>
+              <option value="British Columbia">British Columbia</option>
+            </datalist>
+          </p> <br><br>
+          <p>Do you have a Website you would like to share? Enter the URL below</p>
+          <p>
+            <label for="webaddress">Web Address</label>
+            <input type="url" id="webaddress" name="webaddress" />
+          </p>          
+        </fieldset>
+        <p>
+          <input type="submit" value="Submit Form" />&nbsp;
+          <input type="reset" value="Clear Form" accesskey="c" title="Use accesskey c" />&nbsp;
+        </p>
+        </form>
+      </section>
+      <footer>
+        <h3>We love bees, and flowers! Contact us for more info</h3>
+      </footer>
+    </div>
+  </body>
+</html>
